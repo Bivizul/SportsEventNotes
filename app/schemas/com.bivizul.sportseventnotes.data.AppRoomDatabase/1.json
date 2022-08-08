@@ -1,0 +1,82 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "249caafdd375af460fde17dab5f8cd29",
+    "entities": [
+      {
+        "tableName": "cards_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nameEvent` TEXT NOT NULL, `date` TEXT NOT NULL, `team1` TEXT NOT NULL, `team2` TEXT NOT NULL, `spread` INTEGER NOT NULL, `total` INTEGER NOT NULL, `money` INTEGER NOT NULL, `enable` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameEvent",
+            "columnName": "nameEvent",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "team1",
+            "columnName": "team1",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "team2",
+            "columnName": "team2",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spread",
+            "columnName": "spread",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "total",
+            "columnName": "total",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "money",
+            "columnName": "money",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enable",
+            "columnName": "enable",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '249caafdd375af460fde17dab5f8cd29')"
+    ]
+  }
+}
