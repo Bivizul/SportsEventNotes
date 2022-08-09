@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class GetCardListUseCase @Inject constructor(private val cardListRepository: CardListRepository) {
 
-    suspend operator fun invoke() = cardListRepository.getCardList()
+    operator fun invoke() = cardListRepository.getCardList()
 
 }

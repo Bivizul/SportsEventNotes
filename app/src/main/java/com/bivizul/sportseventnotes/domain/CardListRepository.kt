@@ -16,7 +16,7 @@ interface CardListRepository {
 
     suspend fun getCardItem(cardItemId: Int): CardItem
 
-    suspend fun getCardList(): LiveData<List<CardItem>>
+    fun getCardList(): LiveData<List<CardItem>>
 
     suspend fun getRespServ(lp:LP): Response<ResServ>
 

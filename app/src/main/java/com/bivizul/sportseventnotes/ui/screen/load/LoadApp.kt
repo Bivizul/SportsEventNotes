@@ -21,7 +21,7 @@ import androidx.navigation.NavController
 import com.bivizul.sportseventnotes.domain.Resource
 import com.bivizul.sportseventnotes.domain.Utils
 import com.bivizul.sportseventnotes.domain.model.ResServ
-import com.bivizul.sportseventnotes.ui.navigation.Routes.MAIN_ROUTE
+import com.bivizul.sportseventnotes.ui.navigation.Routes.LIST_CARD_ROUTE
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -47,14 +47,14 @@ fun LoadApp(
 
                         if (it.resServ.length > 2) {
                             delay(1000)
-                            navController.navigate(MAIN_ROUTE)
+                            navController.navigate(LIST_CARD_ROUTE)
 
 //                            val intent = Intent(activity, WebActivity::class.java)
 //                            intent.putExtra(KEY_OUT_RESPONSE, it.posil)
 //                            startActivity(context, intent, bundleOf())
                         } else {
                             delay(1000)
-                            navController.navigate(MAIN_ROUTE)
+                            navController.navigate(LIST_CARD_ROUTE)
                         }
                     }
                 }
@@ -68,24 +68,3 @@ fun LoadApp(
     LoadScreen()
 }
 
-@Composable
-fun LoadScreen(
-
-) {
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        backgroundColor = MaterialTheme.colors.background,
-    ) { paddingValues ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues),
-            contentAlignment = Alignment.Center
-        ) {
-            CircularProgressIndicator(
-                modifier = Modifier.size(50.dp),
-                color = MaterialTheme.colors.onPrimary
-            )
-        }
-    }
-}

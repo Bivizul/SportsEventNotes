@@ -23,7 +23,7 @@ fun ItemCard(
 
     Card(
         onClick = {
-            navController.navigate(DETAIL_ROUTE + "/${card.id}")
+            navController.navigate(DETAIL_ROUTE + "/${card.id - 1}")
         },
         modifier = Modifier
             .fillMaxWidth()
@@ -43,15 +43,15 @@ fun ItemCard(
             Text(
                 text = card.team2
             )
-            Text(
-                text = card.spread.toString()
-            )
-            Text(
-                text = card.total.toString()
-            )
-            Text(
-                text = card.money.toString()
-            )
+//            Text(
+//                text = card.spread.toString()
+//            )
+//            Text(
+//                text = card.total.toString()
+//            )
+//            Text(
+//                text = card.money.toString()
+//            )
         }
     }
 

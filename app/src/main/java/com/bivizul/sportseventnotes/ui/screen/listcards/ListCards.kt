@@ -1,5 +1,6 @@
 package com.bivizul.sportseventnotes.ui.screen.listcards
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -43,19 +44,21 @@ fun ListCardsScreen(
     navController: NavController,
     cardsList: List<CardItem>,
 ) {
+
+    Log.e("qwer", "ListCardsScreen cardsList : $cardsList")
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         backgroundColor = MaterialTheme.colors.background,
         floatingActionButton = {
-            FloatingActionButton(onClick = {
-                navController.navigate(route = ADD_ROUTE)
-            }) {
+            FloatingActionButton(
+                onClick = { navController.navigate(route = ADD_ROUTE) }
+            ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_add_24), contentDescription = "add"
-//                    imageVector = Icons.Filled.Add,
-//                    imageVector = Image(painter = painterResource(id = R.drawable.ic_add_24), contentDescription = "add"),
-//                    contentDescription = ADD_ICONS,
-//                    tint = Color.White
+//                    painter = painterResource(id = R.drawable.ic_add_24), contentDescription = "add"
+                    imageVector = Icons.Filled.Add,
+                    contentDescription = ADD_ICONS,
+                    tint = Color.White
                 )
             }
         }

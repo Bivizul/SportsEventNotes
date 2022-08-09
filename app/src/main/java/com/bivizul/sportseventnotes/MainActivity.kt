@@ -30,22 +30,18 @@ class MainActivity : ComponentActivity() {
                     } catch (e: Exception) {
                         Utils.getDialogErrorConnect(this, this)
                     }
-                    NavGraph(
-                        loadViewModel = loadViewModel,
-                    )
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colors.background
+                    ) {
+                        NavGraph(
+                            loadViewModel = loadViewModel
+                        )
+                    }
                 } else {
                     Utils.getDialogErrorConnect(this, this)
                 }
 
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    NavGraph(
-                        loadViewModel = loadViewModel
-                    )
-                }
             }
         }
     }

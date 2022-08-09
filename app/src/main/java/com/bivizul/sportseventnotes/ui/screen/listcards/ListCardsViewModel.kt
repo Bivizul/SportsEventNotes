@@ -23,16 +23,15 @@ class ListCardsViewModel @Inject constructor(cardListRepositoryImpl: CardListRep
     private val editCardItemUseCase = EditCardItemUseCase(cardListRepositoryImpl)
     private val getCardListUseCase = GetCardListUseCase(cardListRepositoryImpl)
 
-//    fun getCardsList() =  getCardListUseCase()
-    fun getCardsList():LiveData<List<CardItem>>{
-    val a = MutableLiveData<List<CardItem>>()
-        viewModelScope.launch {
-            a.postValue(getCardListUseCase().value)
+    fun getCardsList() =  getCardListUseCase()
+
+    fun addCardItem(cardItem: CardItem){
+        viewModelScope.launch(Dispatchers.IO) {
+            addCardItemUseCase(cardItem)
         }
-        return a
     }
 
-    fun deleteShopItem(cardItem: CardItem){
+    fun deleteCardItem(cardItem: CardItem){
         viewModelScope.launch(Dispatchers.IO) {
             deleteCardItemUseCase(cardItem)
         }
@@ -40,8 +39,8 @@ class ListCardsViewModel @Inject constructor(cardListRepositoryImpl: CardListRep
 
     fun changeEnableState(cardItem: CardItem){
         viewModelScope.launch(Dispatchers.IO) {
-            val newItem = cardItem.copy(enable = !cardItem.enable)
-            editCardItemUseCase(newItem)
+//            val newItem = cardItem.copy(enable = !cardItem.enable)
+//            editCardItemUseCase(newItem)
         }
     }
 

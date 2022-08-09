@@ -11,7 +11,8 @@ class CardListRepositoryImpl @Inject constructor(
     private val cardListDao: CardListDao,
 ) : CardListRepository {
 
-//    private val cardListDao = AppRoomDatabase.getInstance().getRoomDao()
+    //    override suspend fun getCardList(): LiveData<List<CardItem>> = cardListDao.getCardList()
+    override fun getCardList(): LiveData<List<CardItem>> = cardListDao.getCardList()
 
     override suspend fun addCardItem(cardItem: CardItem) = cardListDao.addCardItem(cardItem)
 
@@ -24,7 +25,6 @@ class CardListRepositoryImpl @Inject constructor(
     override suspend fun getCardItem(cardItemId: Int): CardItem =
         cardListDao.getCardItem(cardItemId)
 
-    override suspend fun getCardList(): LiveData<List<CardItem>> = cardListDao.getCardList()
 
     override suspend fun getRespServ(lp: LP) = apiCards.getResServ(lp)
 }
