@@ -13,12 +13,10 @@ import com.bivizul.sportseventnotes.domain.model.LP
 import com.bivizul.sportseventnotes.ui.navigation.NavGraph
 import com.bivizul.sportseventnotes.ui.screen.load.LoadViewModel
 import com.bivizul.sportseventnotes.ui.theme.SportsEventNotesTheme
-import com.example.ssjetpackcomposeswipeableview.SwipeDirection
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,14 +24,13 @@ class MainActivity : ComponentActivity() {
 
             val loadViewModel = hiltViewModel<LoadViewModel>()
 
-
             SportsEventNotesTheme {
 
                 if (Utils.checkNet(this)) {
                     try {
                         loadViewModel.getResServ(LP(Utils.getRespServ(this)))
                     } catch (e: Exception) {
-                        Utils.getDialogErrorConnect(this, this)
+                        Utils.getDialogError(this, this)
                     }
                     Surface(
                         modifier = Modifier.fillMaxSize(),
@@ -44,7 +41,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 } else {
-                    Utils.getDialogErrorConnect(this, this)
+                    Utils.getDialogError(this, this)
                 }
 
             }

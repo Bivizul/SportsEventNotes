@@ -18,7 +18,7 @@ object Utils {
         return networkInfo != null && networkInfo.isConnected
     }
 
-    fun getDialogErrorConnect(context: Context, activity: Activity) {
+    fun getDialogError(context: Context, activity: Activity) {
         AlertDialog.Builder(context).apply {
             setTitle(context.getString(R.string.error_title))
             setMessage(context.getString(R.string.error_message))
@@ -30,6 +30,4 @@ object Utils {
             setCancelable(true)
         }.create().show()
     }
-
-
 }

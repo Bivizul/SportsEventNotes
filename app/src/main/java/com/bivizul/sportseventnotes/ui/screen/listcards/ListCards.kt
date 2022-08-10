@@ -1,7 +1,5 @@
 package com.bivizul.sportseventnotes.ui.screen.listcards
 
-import android.util.Log
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -16,11 +14,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.bivizul.sportseventnotes.R
 import com.bivizul.sportseventnotes.domain.Constants.ADD_ICONS
 import com.bivizul.sportseventnotes.domain.model.CardItem
 import com.bivizul.sportseventnotes.ui.navigation.Routes.ADD_ROUTE

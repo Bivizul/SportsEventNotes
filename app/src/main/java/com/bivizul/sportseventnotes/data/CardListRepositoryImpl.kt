@@ -20,8 +20,5 @@ class CardListRepositoryImpl @Inject constructor(
 
     override suspend fun editCardItem(cardItem: CardItem) = cardListDao.addCardItem(cardItem)
 
-    override suspend fun getCardItem(cardItemId: Int): CardItem =
-        cardListDao.getCardItem(cardItemId)
-
     override suspend fun getRespServ(lp: LP) = apiCards.getResServ(lp)
 }

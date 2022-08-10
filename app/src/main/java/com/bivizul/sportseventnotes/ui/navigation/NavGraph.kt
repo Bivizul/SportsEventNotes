@@ -1,7 +1,6 @@
 package com.bivizul.sportseventnotes.ui.navigation
 
 import android.app.Activity
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext

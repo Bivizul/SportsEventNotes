@@ -10,6 +10,8 @@ object Constants {
     const val ADD_ICONS = "add_icons"
     const val ID = "Id"
     const val ID_DEF = "1"
+    const val BTN_EDIT_LEFT = "btnEditLeft"
+    const val BTN_DELETE_RIGHT = "btnDeleteRight"
     const val TEXT_DATE_BUTTON = "Date is empty"
     const val TEXT_TIME_BUTTON = "Time is empty"
     const val TYPE_FUN_ADD = "type_fun_add"

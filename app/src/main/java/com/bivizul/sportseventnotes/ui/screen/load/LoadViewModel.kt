@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoadViewModel @Inject constructor(private val cardListRepositoryImpl: CardListRepositoryImpl) :
+class LoadViewModel @Inject constructor(cardListRepositoryImpl: CardListRepositoryImpl) :
     ViewModel() {
 
     private val getRespServUseCase = GetRespServUseCase(cardListRepositoryImpl)

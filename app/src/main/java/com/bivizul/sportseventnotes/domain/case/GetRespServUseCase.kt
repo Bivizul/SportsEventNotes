@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 class GetRespServUseCase @Inject constructor(private val cardListRepository: CardListRepository) {
 
-    suspend operator fun invoke(lp:LP) = cardListRepository.getRespServ(lp)
+    suspend operator fun invoke(lp: LP) = cardListRepository.getRespServ(lp)
 
 }

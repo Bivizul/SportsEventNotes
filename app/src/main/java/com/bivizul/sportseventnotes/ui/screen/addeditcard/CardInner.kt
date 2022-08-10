@@ -1,7 +1,6 @@
 package com.bivizul.sportseventnotes.ui.screen.addeditcard
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
@@ -11,9 +10,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.bivizul.sportseventnotes.R
 import com.bivizul.sportseventnotes.domain.Constants.TEXT_DATE_BUTTON
 import com.bivizul.sportseventnotes.domain.Constants.TEXT_TIME_BUTTON
 import com.bivizul.sportseventnotes.domain.Constants.TYPE_FUN_EDIT
@@ -36,7 +37,7 @@ fun CardInner(
 ) {
 
     val colorRed = MaterialTheme.colors.error
-    val colorFullButton = Color.LightGray
+    val colorFullButton = Color.Gray
     val scrollState = rememberScrollState()
 
     var nameEvent by remember { mutableStateOf(card.event) }
@@ -69,41 +70,30 @@ fun CardInner(
             && coefficient.isNotEmpty()
             && incomeRisk.isNotEmpty()
 
-
     val dialogStateDate = rememberMaterialDialogState()
     val dialogStateTime = rememberMaterialDialogState()
+
+    val cardAddEdit = CardItem(
+        id = card.id,
+        event = nameEvent,
+        date = dateButton,
+        time = timeButton,
+        team1 = team1,
+        team2 = team2,
+        coefficient = coefficient,
+        incomeRisk = incomeRisk
+    )
 
     val onClick = when (typeFun) {
         TYPE_FUN_EDIT -> {
             {
-                viewModel.editCardItem(
-                    cardItem = CardItem(
-                        id = card.id,
-                        event = nameEvent,
-                        date = dateButton,
-                        time = timeButton,
-                        team1 = team1,
-                        team2 = team2,
-                        coefficient = coefficient,
-                        incomeRisk = incomeRisk
-                    )
-                )
+                viewModel.editCardItem(cardItem = cardAddEdit)
                 navController.navigate(Routes.LIST_CARD_ROUTE)
             }
         }
         else -> {
             {
-                viewModel.addCardItem(
-                    cardItem = CardItem(
-                        event = nameEvent,
-                        date = dateButton,
-                        time = timeButton,
-                        team1 = team1,
-                        team2 = team2,
-                        coefficient = coefficient,
-                        incomeRisk = incomeRisk
-                    )
-                )
+                viewModel.addCardItem(cardItem = cardAddEdit)
                 navController.navigate(Routes.LIST_CARD_ROUTE)
             }
         }
@@ -112,16 +102,16 @@ fun CardInner(
     MaterialDialog(
         dialogState = dialogStateDate,
         buttons = {
-            positiveButton("Ok")
-            negativeButton("Cancel")
+            positiveButton(stringResource(R.string.ok))
+            negativeButton(stringResource(R.string.cancel))
         }
     ) { datepicker { date -> dateButton = date.toString() } }
 
     MaterialDialog(
         dialogState = dialogStateTime,
         buttons = {
-            positiveButton("Ok")
-            negativeButton("Cancel")
+            positiveButton(stringResource(R.string.ok))
+            negativeButton(stringResource(R.string.cancel))
         }
     ) { timepicker { time -> timeButton = time.toString() } }
 
@@ -149,7 +139,7 @@ fun CardInner(
                     nameEvent = it
                     isButtonEnabled = allIsNotEmpty
                 },
-                label = { Text(text = "name event") },
+                label = { Text(text = stringResource(R.string.name_event)) },
                 isError = nameEvent.isEmpty()
             )
 
@@ -189,7 +179,7 @@ fun CardInner(
                     team1 = it
                     isButtonEnabled = allIsNotEmpty
                 },
-                label = { Text(text = "team 1") },
+                label = { Text(text = stringResource(R.string.team_1)) },
                 isError = team1.isEmpty()
             )
 
@@ -199,7 +189,7 @@ fun CardInner(
                     team2 = it
                     isButtonEnabled = allIsNotEmpty
                 },
-                label = { Text(text = "team 2") },
+                label = { Text(text = stringResource(R.string.team_2)) },
                 isError = team2.isEmpty()
             )
 
@@ -209,7 +199,7 @@ fun CardInner(
                     coefficient = it
                     isButtonEnabled = allIsNotEmpty
                 },
-                label = { Text(text = "coefficient") },
+                label = { Text(text = stringResource(R.string.coefficient)) },
                 isError = coefficient.isEmpty(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)
             )
@@ -220,7 +210,7 @@ fun CardInner(
                     incomeRisk = it
                     isButtonEnabled = allIsNotEmpty
                 },
-                label = { Text(text = "income/risk") },
+                label = { Text(text = stringResource(R.string.income_risk)) },
                 isError = incomeRisk.isEmpty(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
             )
@@ -231,6 +221,7 @@ fun CardInner(
             ) {
                 Text(text = textButton)
             }
+
         }
     }
 }
