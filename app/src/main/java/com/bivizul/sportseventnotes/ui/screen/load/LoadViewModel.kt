@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bivizul.sportseventnotes.data.CardListRepositoryImpl
-import com.bivizul.sportseventnotes.domain.Resource
 import com.bivizul.sportseventnotes.domain.case.GetRespServUseCase
 import com.bivizul.sportseventnotes.domain.model.LP
 import com.bivizul.sportseventnotes.domain.model.ResServ
@@ -20,20 +19,21 @@ class LoadViewModel @Inject constructor(cardListRepositoryImpl: CardListReposito
 
     private val getRespServUseCase = GetRespServUseCase(cardListRepositoryImpl)
 
-    private val _resServ = MutableLiveData<Resource<ResServ>>()
-    val resServ: LiveData<Resource<ResServ>> = _resServ
+    private val _resServ = MutableLiveData<ResServ>()
+    val resServ: LiveData<ResServ> = _resServ
 
     fun getResServ(lp: LP) {
         viewModelScope.launch(Dispatchers.IO) {
-            _resServ.postValue(Resource.Loading())
-            val response = getRespServUseCase(lp)
-            if (response.isSuccessful) {
-                response.body()?.let {
-                    _resServ.postValue(Resource.Success(it))
+            getRespServUseCase(lp)?.let { response ->
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        _resServ.postValue(response.body())
+                    }
+                } else {
+                    _resServ.postValue(ResServ(response.message()))
                 }
-            } else {
-                _resServ.postValue(Resource.Error(response.message()))
             }
         }
     }
+
 }

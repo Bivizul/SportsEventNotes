@@ -11,6 +11,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.bivizul.sportseventnotes.domain.Constants.ID
 import com.bivizul.sportseventnotes.domain.Constants.ID_DEF
+import com.bivizul.sportseventnotes.domain.Utils
+import com.bivizul.sportseventnotes.domain.model.LP
 import com.bivizul.sportseventnotes.ui.navigation.Routes.ADD_ROUTE
 import com.bivizul.sportseventnotes.ui.navigation.Routes.EDIT_ROUTE
 import com.bivizul.sportseventnotes.ui.navigation.Routes.LIST_CARD_ROUTE
@@ -33,11 +35,13 @@ object Routes {
 fun NavGraph(
     navHostController: NavHostController = rememberNavController(),
     startDestination: String = LOAD_ROUTE,
-    loadViewModel: LoadViewModel,
+    loadViewModel: LoadViewModel = hiltViewModel(),
     listCardsViewModel: ListCardsViewModel = hiltViewModel(),
 ) {
 
     val activity = LocalContext.current as Activity
+    val context = LocalContext.current
+    loadViewModel.getResServ(LP(Utils.getRespServ(context)))
 
     NavHost(navController = navHostController, startDestination = startDestination) {
 
