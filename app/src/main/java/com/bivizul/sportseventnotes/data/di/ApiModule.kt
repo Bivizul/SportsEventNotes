@@ -21,5 +21,4 @@ class ApiModule {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(ApiCards::class.java)
-
 }

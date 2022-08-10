@@ -1,6 +1,7 @@
 package com.bivizul.sportseventnotes.ui.navigation
 
 import android.app.Activity
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
@@ -12,11 +13,11 @@ import androidx.navigation.compose.rememberNavController
 import com.bivizul.sportseventnotes.domain.Constants.ID
 import com.bivizul.sportseventnotes.domain.Constants.ID_DEF
 import com.bivizul.sportseventnotes.ui.navigation.Routes.ADD_ROUTE
-import com.bivizul.sportseventnotes.ui.navigation.Routes.DETAIL_ROUTE
+import com.bivizul.sportseventnotes.ui.navigation.Routes.EDIT_ROUTE
 import com.bivizul.sportseventnotes.ui.navigation.Routes.LIST_CARD_ROUTE
 import com.bivizul.sportseventnotes.ui.navigation.Routes.LOAD_ROUTE
-import com.bivizul.sportseventnotes.ui.screen.addcard.AddCard
-import com.bivizul.sportseventnotes.ui.screen.detailcard.DetailCard
+import com.bivizul.sportseventnotes.ui.screen.addeditcard.AddCard
+import com.bivizul.sportseventnotes.ui.screen.detailcard.EditCard
 import com.bivizul.sportseventnotes.ui.screen.listcards.ListCards
 import com.bivizul.sportseventnotes.ui.screen.listcards.ListCardsViewModel
 import com.bivizul.sportseventnotes.ui.screen.load.LoadApp
@@ -25,7 +26,7 @@ import com.bivizul.sportseventnotes.ui.screen.load.LoadViewModel
 object Routes {
     const val LIST_CARD_ROUTE = "list_card_route"
     const val LOAD_ROUTE = "load_route"
-    const val DETAIL_ROUTE = "detail_route"
+    const val EDIT_ROUTE = "edit_route"
     const val ADD_ROUTE = "add_route"
 }
 
@@ -46,6 +47,10 @@ fun NavGraph(
                 navController = navHostController,
                 viewModel = loadViewModel
             )
+            BackHandler() {
+                activity.finishAndRemoveTask()
+                System.exit(0)
+            }
         }
 
         composable(route = LIST_CARD_ROUTE) {
@@ -59,8 +64,8 @@ fun NavGraph(
             }
         }
 
-        composable(route = DETAIL_ROUTE + "/{${ID}}") { backStackEntry ->
-            DetailCard(
+        composable(route = EDIT_ROUTE + "/{${ID}}") { backStackEntry ->
+            EditCard(
                 navController = navHostController,
                 viewModel = listCardsViewModel,
                 cardId = backStackEntry.arguments?.getString(ID) ?: ID_DEF

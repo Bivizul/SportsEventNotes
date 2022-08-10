@@ -28,7 +28,7 @@ fun LoadScreen(
         ) {
             CircularProgressIndicator(
                 modifier = Modifier.size(50.dp),
-                color = MaterialTheme.colors.onPrimary
+                color = MaterialTheme.colors.primary
             )
         }
     }

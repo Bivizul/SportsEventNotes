@@ -2,8 +2,7 @@ package com.bivizul.sportseventnotes.ui.screen.listcards
 
 import android.util.Log
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.FloatingActionButton
@@ -18,6 +17,8 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.bivizul.sportseventnotes.R
 import com.bivizul.sportseventnotes.domain.Constants.ADD_ICONS
@@ -44,9 +45,6 @@ fun ListCardsScreen(
     navController: NavController,
     cardsList: List<CardItem>,
 ) {
-
-    Log.e("qwer", "ListCardsScreen cardsList : $cardsList")
-
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         backgroundColor = MaterialTheme.colors.background,
@@ -55,7 +53,6 @@ fun ListCardsScreen(
                 onClick = { navController.navigate(route = ADD_ROUTE) }
             ) {
                 Icon(
-//                    painter = painterResource(id = R.drawable.ic_add_24), contentDescription = "add"
                     imageVector = Icons.Filled.Add,
                     contentDescription = ADD_ICONS,
                     tint = Color.White
@@ -63,12 +60,16 @@ fun ListCardsScreen(
             }
         }
     ) { paddingValues ->
-        LazyColumn(modifier = Modifier.padding(paddingValues)) {
-            items(cardsList) { cardItem ->
-                ItemCard(navController = navController, card = cardItem)
+        Column(Modifier.padding(paddingValues)) {
+            LazyColumn(
+                contentPadding = PaddingValues(10.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                items(cardsList) { cardItem ->
+                    ItemCard(navController = navController, card = cardItem)
+                }
             }
         }
-
     }
 }
 

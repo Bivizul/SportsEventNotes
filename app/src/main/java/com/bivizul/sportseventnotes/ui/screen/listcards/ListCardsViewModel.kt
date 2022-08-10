@@ -31,6 +31,12 @@ class ListCardsViewModel @Inject constructor(cardListRepositoryImpl: CardListRep
         }
     }
 
+    fun editCardItem(cardItem: CardItem){
+        viewModelScope.launch(Dispatchers.IO) {
+            editCardItemUseCase(cardItem)
+        }
+    }
+
     fun deleteCardItem(cardItem: CardItem){
         viewModelScope.launch(Dispatchers.IO) {
             deleteCardItemUseCase(cardItem)

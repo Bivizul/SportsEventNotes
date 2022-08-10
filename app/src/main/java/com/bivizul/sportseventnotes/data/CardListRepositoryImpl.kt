@@ -11,7 +11,6 @@ class CardListRepositoryImpl @Inject constructor(
     private val cardListDao: CardListDao,
 ) : CardListRepository {
 
-    //    override suspend fun getCardList(): LiveData<List<CardItem>> = cardListDao.getCardList()
     override fun getCardList(): LiveData<List<CardItem>> = cardListDao.getCardList()
 
     override suspend fun addCardItem(cardItem: CardItem) = cardListDao.addCardItem(cardItem)
@@ -19,12 +18,10 @@ class CardListRepositoryImpl @Inject constructor(
     override suspend fun deleteCardItem(cardItem: CardItem) =
         cardListDao.deleteCardItem(cardItem.id)
 
-    // add работает одновременно как добавление так и замена
     override suspend fun editCardItem(cardItem: CardItem) = cardListDao.addCardItem(cardItem)
 
     override suspend fun getCardItem(cardItemId: Int): CardItem =
         cardListDao.getCardItem(cardItemId)
-
 
     override suspend fun getRespServ(lp: LP) = apiCards.getResServ(lp)
 }

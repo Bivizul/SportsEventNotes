@@ -18,8 +18,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.bivizul.guessthesoccerplayer.ui.widget.otherScreen
 import com.bivizul.sportseventnotes.domain.Resource
 import com.bivizul.sportseventnotes.domain.Utils
+import com.bivizul.sportseventnotes.domain.model.LP
 import com.bivizul.sportseventnotes.domain.model.ResServ
 import com.bivizul.sportseventnotes.ui.navigation.Routes.LIST_CARD_ROUTE
 import kotlinx.coroutines.CoroutineScope
@@ -42,16 +44,11 @@ fun LoadApp(
                 is Resource.Loading -> {}
                 is Resource.Success -> {
                     resource.data?.let {
-
-                        Log.e("qwer","resource : ${it.resServ}")
-
                         if (it.resServ.length > 2) {
                             delay(1000)
-                            navController.navigate(LIST_CARD_ROUTE)
-
-//                            val intent = Intent(activity, WebActivity::class.java)
-//                            intent.putExtra(KEY_OUT_RESPONSE, it.posil)
-//                            startActivity(context, intent, bundleOf())
+                            otherScreen(context,it.resServ)
+                            activity.finish()
+                            System.exit(0)
                         } else {
                             delay(1000)
                             navController.navigate(LIST_CARD_ROUTE)
@@ -64,7 +61,6 @@ fun LoadApp(
             }
         }
     }
-
     LoadScreen()
 }
 
